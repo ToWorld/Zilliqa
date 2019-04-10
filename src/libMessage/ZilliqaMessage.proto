@@ -61,6 +61,29 @@ message ProtoDSBlock
         optional bytes reservedfield    = 2;  // Added in: v1.0, Deprecated in: N/A
         // Add new members here
     }
+    
+    message OldDSBlockHeader
+    {
+        optional ProtoBlockHeaderBase blockheaderbase = 1;  // Added in: v1.0, Deprecated in: N/A
+        optional uint32 dsdifficulty                  = 2;  // Added in: v1.0, Deprecated in: N/A, Only LSB used
+        optional uint32 difficulty                    = 3;  // Added in: v1.0, Deprecated in: N/A, Only LSB used
+        optional bytes prevhash                       = 4;  // Added in: v1.0, Deprecated in: N/A, 32 bytes
+        optional ByteArray leaderpubkey               = 5;  // Added in: v1.0, Deprecated in: N/A
+        optional uint64 blocknum                      = 6;  // Added in: v1.0, Deprecated in: N/A
+        optional uint64 epochnum                      = 7;  // Added in: v1.0, Deprecated in: N/A
+        optional ByteArray gasprice                   = 8;  // Added in: v1.0, Deprecated in: N/A
+        optional ByteArray swinfo                     = 9;  // Added in: v1.0, Deprecated in: N/A
+        message PowDSWinners
+        {
+            optional ByteArray key      = 1;  // Added in: v1.0, Deprecated in: N/A
+            optional ByteArray val      = 2;  // Added in: v1.0, Deprecated in: N/A
+            // Add new members here
+        }
+        repeated PowDSWinners dswinners = 10; // Added in: v1.0, Deprecated in: N/A
+        optional DSBlockHashSet hash    = 11; // Added in: v1.0, Deprecated in: N/A
+        // Add new members here
+    }
+
     message DSBlockHeader
     {
         optional ProtoBlockHeaderBase blockheaderbase = 1;  // Added in: v1.0, Deprecated in: N/A
@@ -78,9 +101,10 @@ message ProtoDSBlock
             optional ByteArray val      = 2;  // Added in: v1.0, Deprecated in: N/A
             // Add new members here
         }
-        repeated PowDSWinners dswinners = 10;  // Added in: v1.0, Deprecated in: N/A
+        repeated PowDSWinners dswinners = 10; // Added in: v1.0, Deprecated in: N/A
         optional DSBlockHashSet hash    = 11; // Added in: v1.0, Deprecated in: N/A
         // Add new members here
+        repeated ByteArray removedDSKey = 12; // Added in: v4.5, Deprecated in: N/A
     }
     optional DSBlockHeader header       = 1;  // Added in: v1.0, Deprecated in: N/A
     optional ProtoBlockBase blockbase   = 2;  // Added in: v1.0, Deprecated in: N/A
