@@ -16,10 +16,7 @@
  */
 
 #include "jsonrpccpp/server.h"
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#include <boost/multiprecision/cpp_int.hpp>
-#pragma GCC diagnostic pop
+
 #include <mutex>
 #include <random>
 #include "libData/BlockData/BlockHeader/BlockHeaderBase.h"
@@ -494,9 +491,9 @@ class Server : public AbstractZServer {
   // Each function of this library can exist in a seperate thread
 
   std::mutex m_mutexBlockTxPair;
-  std::pair<uint64_t, boost::multiprecision::uint128_t> m_BlockTxPair;
+  std::pair<uint64_t, uint128_t> m_BlockTxPair;
   std::mutex m_mutexTxBlockCountSumPair;
-  std::pair<uint64_t, boost::multiprecision::uint128_t> m_TxBlockCountSumPair;
+  std::pair<uint64_t, uint128_t> m_TxBlockCountSumPair;
   uint64_t m_StartTimeTx;
   uint64_t m_StartTimeDs;
   std::mutex m_mutexDSBlockCache;

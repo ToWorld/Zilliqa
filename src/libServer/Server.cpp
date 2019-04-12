@@ -18,12 +18,8 @@
 #include "JSONConversion.h"
 
 #include <boost/multiprecision/cpp_dec_float.hpp>
-#include "depends/jsonrpc/include/jsonrpccpp/server.h"
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#include <boost/multiprecision/cpp_int.hpp>
-#pragma GCC diagnostic pop
 #include <iostream>
+#include "depends/jsonrpc/include/jsonrpccpp/server.h"
 
 #include "Server.h"
 #include "common/MempoolEnum.h"
@@ -477,7 +473,7 @@ Json::Value Server::GetBalance(const string& address) {
 
     Json::Value ret;
     if (account != nullptr) {
-      boost::multiprecision::uint128_t balance = account->GetBalance();
+      uint128_t balance = account->GetBalance();
       uint64_t nonce = account->GetNonce();
 
       ret["balance"] = balance.str();
@@ -1057,8 +1053,7 @@ Json::Value Server::DSBlockListing(unsigned int page) {
   Json::Value tmpJson;
   if (page <= NUM_PAGES_CACHE)  // can use cache
   {
-    boost::multiprecision::uint128_t cacheSize(
-        m_DSBlockCache.second.capacity());
+    uint128_t cacheSize(m_DSBlockCache.second.capacity());
     if (cacheSize > m_DSBlockCache.second.size()) {
       cacheSize = m_DSBlockCache.second.size();
     }
@@ -1151,8 +1146,7 @@ Json::Value Server::TxBlockListing(unsigned int page) {
   Json::Value tmpJson;
   if (page <= NUM_PAGES_CACHE)  // can use cache
   {
-    boost::multiprecision::uint128_t cacheSize(
-        m_TxBlockCache.second.capacity());
+    uint128_t cacheSize(m_TxBlockCache.second.capacity());
 
     if (cacheSize > m_TxBlockCache.second.size()) {
       cacheSize = m_TxBlockCache.second.size();
